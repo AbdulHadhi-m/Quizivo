@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "category": "General Knowledge",
+    "difficulty": "easy",
+    "type": "multiple",
+    "question": "What is the capital of France?",
+    "options": ["Paris", "London", "Berlin", "Madrid"],
+    "answer": "Paris",
+    "explanation": "Paris is the capital and most populous city of France."
+  },
+  {
+    "id": "2",
+    "category": "General Knowledge",
+    "difficulty": "easy",
+    "type": "multiple",
+    "question": "Which planet is known as the Red Planet?",
+    "options": ["Mars", "Jupiter", "Venus", "Saturn"],
+    "answer": "Mars",
+    "explanation": "Mars is often called the 'Red Planet' because of iron oxide on its surface."
+  },
+  {
+    "id": "3",
+    "category": "General Knowledge",
+    "difficulty": "easy",
+    "type": "multiple",
+    "question": "Who painted the Mona Lisa?",
+    "options": ["Leonardo da Vinci", "Pablo Picasso", "Vincent van Gogh", "Michelangelo"],
+    "answer": "Leonardo da Vinci",
+    "explanation": "The Mona Lisa was painted by the Italian Renaissance artist Leonardo da Vinci."
+  }
+]

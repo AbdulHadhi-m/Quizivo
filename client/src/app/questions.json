@@ -1,0 +1,303 @@
+[
+  {
+    "id": 1,
+    "category": "General Knowledge",
+    "difficulty": "easy",
+    "type": "multiple",
+    "question": "Which planet is known as the Red Planet?",
+    "options": ["Earth", "Mars", "Venus", "Jupiter"],
+    "answer": "Mars",
+    "explanation": "Mars is called the Red Planet because of iron oxide on its surface."
+  },
+  {
+    "id": 2,
+    "category": "General Knowledge",
+    "difficulty": "easy",
+    "type": "boolean",
+    "question": "The Pacific Ocean is the largest ocean on Earth.",
+    "options": ["True", "False"],
+    "answer": "True",
+    "explanation": "The Pacific Ocean is the largest and deepest ocean on Earth."
+  },
+  {
+    "id": 3,
+    "category": "General Knowledge",
+    "difficulty": "medium",
+    "type": "multiple",
+    "question": "What is the capital of Japan?",
+    "options": ["Kyoto", "Tokyo", "Osaka", "Seoul"],
+    "answer": "Tokyo",
+    "explanation": "Tokyo is the capital city of Japan."
+  },
+  {
+    "id": 4,
+    "category": "General Knowledge",
+    "difficulty": "hard",
+    "type": "multiple",
+    "question": "Which scientist developed the theory of relativity?",
+    "options": ["Newton", "Einstein", "Tesla", "Galileo"],
+    "answer": "Einstein",
+    "explanation": "Albert Einstein developed the theory of relativity."
+  },
+  {
+    "id": 5,
+    "category": "Science",
+    "difficulty": "easy",
+    "type": "multiple",
+    "question": "What gas do humans need to breathe to survive?",
+    "options": ["Carbon Dioxide", "Nitrogen", "Oxygen", "Hydrogen"],
+    "answer": "Oxygen",
+    "explanation": "Humans need oxygen for respiration."
+  },
+  {
+    "id": 6,
+    "category": "Science",
+    "difficulty": "easy",
+    "type": "boolean",
+    "question": "Water boils at 100°C at standard atmospheric pressure.",
+    "options": ["True", "False"],
+    "answer": "True",
+    "explanation": "At normal atmospheric pressure, water boils at 100°C."
+  },
+  {
+    "id": 7,
+    "category": "Science",
+    "difficulty": "medium",
+    "type": "multiple",
+    "question": "Which part of the plant conducts photosynthesis?",
+    "options": ["Root", "Stem", "Leaf", "Flower"],
+    "answer": "Leaf",
+    "explanation": "Leaves contain chlorophyll and are the primary site of photosynthesis."
+  },
+  {
+    "id": 8,
+    "category": "Science",
+    "difficulty": "hard",
+    "type": "multiple",
+    "question": "What is the chemical symbol for sodium?",
+    "options": ["So", "Sd", "Na", "S"],
+    "answer": "Na",
+    "explanation": "The symbol Na comes from the Latin word natrium."
+  },
+  {
+    "id": 9,
+    "category": "Technology",
+    "difficulty": "easy",
+    "type": "multiple",
+    "question": "Which device is used to point and click on a computer screen?",
+    "options": ["Keyboard", "Mouse", "Monitor", "Printer"],
+    "answer": "Mouse",
+    "explanation": "A mouse is a pointing input device."
+  },
+  {
+    "id": 10,
+    "category": "Technology",
+    "difficulty": "easy",
+    "type": "boolean",
+    "question": "CPU stands for Central Processing Unit.",
+    "options": ["True", "False"],
+    "answer": "True",
+    "explanation": "CPU means Central Processing Unit."
+  },
+  {
+    "id": 11,
+    "category": "Technology",
+    "difficulty": "medium",
+    "type": "multiple",
+    "question": "Which company created the Windows operating system?",
+    "options": ["Apple", "Google", "Microsoft", "IBM"],
+    "answer": "Microsoft",
+    "explanation": "Microsoft developed the Windows operating system."
+  },
+  {
+    "id": 12,
+    "category": "Technology",
+    "difficulty": "hard",
+    "type": "multiple",
+    "question": "Which data structure uses FIFO order?",
+    "options": ["Stack", "Queue", "Tree", "Graph"],
+    "answer": "Queue",
+    "explanation": "Queue follows First In, First Out order."
+  },
+  {
+    "id": 13,
+    "category": "History",
+    "difficulty": "easy",
+    "type": "multiple",
+    "question": "Which country built the pyramids?",
+    "options": ["India", "Egypt", "China", "Greece"],
+    "answer": "Egypt",
+    "explanation": "The famous pyramids were built in ancient Egypt."
+  },
+  {
+    "id": 14,
+    "category": "History",
+    "difficulty": "easy",
+    "type": "boolean",
+    "question": "World War II ended in 1945.",
+    "options": ["True", "False"],
+    "answer": "True",
+    "explanation": "World War II ended in 1945."
+  },
+  {
+    "id": 15,
+    "category": "History",
+    "difficulty": "medium",
+    "type": "multiple",
+    "question": "Who was the first President of the United States?",
+    "options": ["Lincoln", "Jefferson", "Washington", "Roosevelt"],
+    "answer": "Washington",
+    "explanation": "George Washington was the first U.S. President."
+  },
+  {
+    "id": 16,
+    "category": "History",
+    "difficulty": "hard",
+    "type": "multiple",
+    "question": "In which year did the Berlin Wall fall?",
+    "options": ["1985", "1989", "1991", "1979"],
+    "answer": "1989",
+    "explanation": "The Berlin Wall fell in 1989."
+  },
+  {
+    "id": 17,
+    "category": "Sports",
+    "difficulty": "easy",
+    "type": "multiple",
+    "question": "How many players are there in a football team on the field?",
+    "options": ["9", "10", "11", "12"],
+    "answer": "11",
+    "explanation": "A football team has 11 players on the field."
+  },
+  {
+    "id": 18,
+    "category": "Sports",
+    "difficulty": "easy",
+    "type": "boolean",
+    "question": "Cricket uses a bat and ball.",
+    "options": ["True", "False"],
+    "answer": "True",
+    "explanation": "Cricket is played using a bat and ball."
+  },
+  {
+    "id": 19,
+    "category": "Sports",
+    "difficulty": "medium",
+    "type": "multiple",
+    "question": "Which country hosted the 2022 FIFA World Cup?",
+    "options": ["Brazil", "Qatar", "Russia", "France"],
+    "answer": "Qatar",
+    "explanation": "Qatar hosted the 2022 FIFA World Cup."
+  },
+  {
+    "id": 20,
+    "category": "Sports",
+    "difficulty": "hard",
+    "type": "multiple",
+    "question": "How many points is a touchdown worth in American football before the extra kick?",
+    "options": ["3", "6", "7", "8"],
+    "answer": "6",
+    "explanation": "A touchdown is worth 6 points before any extra attempt."
+  },
+
+  {
+    "id": 21,
+    "category": "General Knowledge",
+    "difficulty": "easy",
+    "type": "multiple",
+    "question": "Which color is formed by mixing red and yellow?",
+    "options": ["Green", "Orange", "Purple", "Blue"],
+    "answer": "Orange",
+    "explanation": "Red and yellow combine to make orange."
+  },
+  {
+    "id": 22,
+    "category": "General Knowledge",
+    "difficulty": "medium",
+    "type": "boolean",
+    "question": "The Great Wall of China is visible from the Moon with the naked eye.",
+    "options": ["True", "False"],
+    "answer": "False",
+    "explanation": "That is a common myth; it is not visible to the naked eye from the Moon."
+  },
+  {
+    "id": 23,
+    "category": "Science",
+    "difficulty": "easy",
+    "type": "multiple",
+    "question": "Which planet is closest to the Sun?",
+    "options": ["Venus", "Mercury", "Mars", "Earth"],
+    "answer": "Mercury",
+    "explanation": "Mercury is the closest planet to the Sun."
+  },
+  {
+    "id": 24,
+    "category": "Science",
+    "difficulty": "medium",
+    "type": "boolean",
+    "question": "Humans have four lungs.",
+    "options": ["True", "False"],
+    "answer": "False",
+    "explanation": "Humans have two lungs."
+  },
+  {
+    "id": 25,
+    "category": "Technology",
+    "difficulty": "easy",
+    "type": "multiple",
+    "question": "Which of these is a web browser?",
+    "options": ["Chrome", "Python", "Linux", "Photoshop"],
+    "answer": "Chrome",
+    "explanation": "Google Chrome is a web browser."
+  },
+  {
+    "id": 26,
+    "category": "Technology",
+    "difficulty": "medium",
+    "type": "boolean",
+    "question": "HTML is a programming language.",
+    "options": ["True", "False"],
+    "answer": "False",
+    "explanation": "HTML is a markup language, not a programming language."
+  },
+  {
+    "id": 27,
+    "category": "History",
+    "difficulty": "easy",
+    "type": "multiple",
+    "question": "Who discovered America in 1492 according to traditional history lessons?",
+    "options": ["Christopher Columbus", "Marco Polo", "Napoleon", "Magellan"],
+    "answer": "Christopher Columbus",
+    "explanation": "Traditional history lessons commonly credit Christopher Columbus in 1492."
+  },
+  {
+    "id": 28,
+    "category": "History",
+    "difficulty": "medium",
+    "type": "boolean",
+    "question": "The Roman Empire existed before the Ottoman Empire.",
+    "options": ["True", "False"],
+    "answer": "True",
+    "explanation": "The Roman Empire came much earlier than the Ottoman Empire."
+  },
+  {
+    "id": 29,
+    "category": "Sports",
+    "difficulty": "easy",
+    "type": "multiple",
+    "question": "Which sport is associated with Wimbledon?",
+    "options": ["Cricket", "Tennis", "Football", "Golf"],
+    "answer": "Tennis",
+    "explanation": "Wimbledon is one of the biggest tennis tournaments."
+  },
+  {
+    "id": 30,
+    "category": "Sports",
+    "difficulty": "medium",
+    "type": "boolean",
+    "question": "Basketball teams have 5 players on the court at a time.",
+    "options": ["True", "False"],
+    "answer": "True",
+    "explanation": "Each basketball team has 5 players on the court."
+  }
+]
