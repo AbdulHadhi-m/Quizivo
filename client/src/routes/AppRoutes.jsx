@@ -10,6 +10,9 @@ import ProfilePage from "../pages/ProfilePage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import NotFoundPage from "../pages/NotFoundPage";
+import AboutPage from "../pages/AboutPage";
+import TermsPage from "../pages/TermsPage";
+import PrivacyPage from "../pages/PrivacyPage";
 
 export default function AppRoutes() {
   return (
@@ -22,6 +25,9 @@ export default function AppRoutes() {
       <Route path="/quiz/result" element={<QuizResultPage />} />
       <Route path="/leaderboard" element={<LeaderboardPage />} />
       <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/terms" element={<TermsPage />} />
+      <Route path="/privacy" element={<PrivacyPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="*" element={<NotFoundPage />} />

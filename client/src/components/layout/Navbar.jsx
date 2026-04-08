@@ -1,10 +1,12 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { Menu, Sparkles, Trophy, UserCircle2, Zap, LogOut } from "lucide-react";
+import { Menu, Sparkles, Trophy, UserCircle2, Zap, LogOut, X } from "lucide-react";
 import { motion } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../features/auth/authSlice";
 
 const MotionDiv = motion.div;
+const MotionAside = motion.aside;
 
 const navItems = [
   { label: "Home", path: "/" },
@@ -17,10 +19,28 @@ export default function Navbar() {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const mobileItems = useMemo(() => {
+    const base = [...navItems];
+    if (isAuthenticated) base.push({ label: "Profile", path: "/profile" });
+    else base.push({ label: "Login", path: "/login" });
+    return base;
+  }, [isAuthenticated]);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [mobileOpen]);
 
   const handleLogout = () => {
     dispatch(logoutUser());
     navigate("/");
+    setMobileOpen(false);
   };
 
   return (
@@ -102,12 +122,70 @@ export default function Navbar() {
               </Link>
             )}
 
-            <button className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-slate-600 lg:hidden focus:outline-none">
+            <button
+              onClick={() => setMobileOpen(true)}
+              className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-slate-600 lg:hidden focus:outline-none"
+              aria-label="Open menu"
+            >
               <Menu size={20} />
             </button>
           </div>
         </div>
       </MotionDiv>
+
+      {/* Mobile drawer */}
+      {mobileOpen && (
+        <div className="pointer-events-auto fixed inset-0 z-[60] lg:hidden">
+          <div
+            className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
+            onClick={() => setMobileOpen(false)}
+          />
+          <MotionAside
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            transition={{ type: "spring", damping: 22, stiffness: 220 }}
+            className="absolute right-0 top-0 h-full w-[320px] max-w-[90vw] bg-white shadow-2xl border-l border-slate-100 p-6"
+          >
+            <div className="flex items-center justify-between">
+              <div className="font-display text-xl font-black text-slate-900">Menu</div>
+              <button
+                onClick={() => setMobileOpen(false)}
+                className="h-10 w-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-slate-200"
+                aria-label="Close menu"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="mt-6 grid gap-2">
+              {mobileItems.map((item) => (
+                <button
+                  key={item.path}
+                  onClick={() => {
+                    navigate(item.path);
+                    setMobileOpen(false);
+                  }}
+                  className="w-full rounded-2xl border border-slate-100 bg-white px-4 py-4 text-left font-bold text-slate-800 hover:bg-slate-50"
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+
+            <div className="mt-6">
+              {isAuthenticated ? (
+                <button
+                  onClick={handleLogout}
+                  className="w-full premium-button flex items-center justify-center gap-2 bg-slate-900 px-6 py-4 text-white hover:bg-slate-800"
+                >
+                  <LogOut size={16} />
+                  Logout
+                </button>
+              ) : null}
+            </div>
+          </MotionAside>
+        </div>
+      )}
     </header>
   );
 }

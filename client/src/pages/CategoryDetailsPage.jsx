@@ -11,13 +11,14 @@ export default function CategoryDetailsPage() {
   const navigate = useNavigate();
   const [category, setCategory] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const { data } = await axios.get("/categories");
-        const found = data.find((c) => c.slug === slug);
-        setCategory(found);
+        const { data } = await axios.get(`/categories/${slug}`);
+        setCategory(data);
+        setImageError(false);
       } catch (error) {
         console.error("Error fetching category:", error);
       } finally {
@@ -58,11 +59,32 @@ export default function CategoryDetailsPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-tr from-primary to-secondary rounded-[40px] blur-2xl opacity-10 animate-pulse" />
-              <img
-                src={category.image}
-                alt={category.name}
-                className="relative rounded-[40px] shadow-2xl w-full h-[400px] object-cover border border-white/20"
-              />
+              {category.image && !imageError ? (
+                <img
+                  src={category.image}
+                  alt={category.name}
+                  onError={() => setImageError(true)}
+                  className="relative rounded-[40px] shadow-2xl w-full h-[400px] object-cover border border-white/20"
+                />
+              ) : (
+                <div
+                  className={`relative rounded-[40px] shadow-2xl w-full h-[400px] border border-white/20 overflow-hidden bg-gradient-to-br ${
+                    category.color || "from-slate-200 to-slate-100"
+                  }`}
+                >
+                  <div className="absolute inset-0 bg-mesh opacity-30" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="text-7xl drop-shadow-sm">
+                        {category.emoji || "🧠"}
+                      </div>
+                      <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-xs font-black uppercase tracking-widest text-slate-700">
+                        {category.name}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
               <div className="absolute top-6 left-6 px-4 py-2 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl">
                  <div className="flex items-center gap-2 text-primary font-black uppercase tracking-widest text-[10px]">
                     <Trophy size={14} />
@@ -104,13 +126,30 @@ export default function CategoryDetailsPage() {
 
               <div className="flex flex-wrap gap-4">
                 <button
-                  onClick={() => navigate("/quiz/setup", { state: { category: category.name } })}
+                  onClick={() =>
+                    navigate("/quiz/setup", {
+                      state: { category: category.name },
+                    })
+                  }
                   className="premium-button flex items-center gap-3 bg-primary px-10 py-5 text-white shadow-xl hover:scale-105 transition-all"
                 >
                   <Play size={20} fill="currentColor" />
                   Start Your Mission
                 </button>
-                <button className="premium-button flex items-center gap-3 border border-slate-200 bg-white px-10 py-5 text-slate-700 hover:bg-slate-50">
+                <button
+                  onClick={() =>
+                    navigate("/quiz/play", {
+                      state: {
+                        category: category.name,
+                        amount: 10,
+                        difficulty: "easy",
+                        type: "multiple",
+                        practice: true,
+                      },
+                    })
+                  }
+                  className="premium-button flex items-center gap-3 border border-slate-200 bg-white px-10 py-5 text-slate-700 hover:bg-slate-50"
+                >
                    Practice Mode
                 </button>
               </div>

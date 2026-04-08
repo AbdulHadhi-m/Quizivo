@@ -18,10 +18,22 @@ export default function Footer() {
               competitive, and most importantly, fun.
             </p>
             <div className="mt-8 flex gap-4">
-              <SocialLink icon={<Twitter size={18} />} />
-              <SocialLink icon={<Github size={18} />} />
-              <SocialLink icon={<Linkedin size={18} />} />
-              <SocialLink icon={<Mail size={18} />} />
+              <SocialLink
+                href="https://x.com/hadhixz"
+                label="X (Twitter)"
+                icon={<Twitter size={18} />}
+              />
+              <SocialLink
+                href="https://github.com/AbdulHadhi-m"
+                label="GitHub"
+                icon={<Github size={18} />}
+              />
+              <SocialLink
+                href="https://www.linkedin.com/in/abdul-hadhi-m/"
+                label="LinkedIn"
+                icon={<Linkedin size={18} />}
+              />
+              <SocialLink href="#" label="Email" icon={<Mail size={18} />} />
             </div>
           </div>
 
@@ -38,10 +50,9 @@ export default function Footer() {
           <div>
             <h4 className="font-display font-black text-slate-900 uppercase tracking-widest text-xs mb-6">Company</h4>
             <ul className="space-y-4">
-              <FooterLink label="About Quizivo" to="/" />
-              <FooterLink label="Design System" to="/" />
-              <FooterLink label="Terms of Service" to="/" />
-              <FooterLink label="Privacy Policy" to="/" />
+              <FooterLink label="About Quizivo" to="/about" />
+              <FooterLink label="Terms of Service" to="/terms" />
+              <FooterLink label="Privacy Policy" to="/privacy" />
             </ul>
           </div>
 
@@ -68,14 +79,6 @@ export default function Footer() {
           <p className="text-xs font-medium text-slate-400">
             © 2026 Quizivo Labs. Built with precision and passion.
           </p>
-          <div className="flex items-center gap-6">
-            <span className="text-[10px] font-black uppercase tracking-widest text-slate-300">v1.2.0 Stable</span>
-            <div className="flex items-center gap-1.5 grayscale opacity-50">
-               <span className="h-4 w-4 bg-slate-200 rounded-sm" />
-               <span className="h-4 w-4 bg-slate-200 rounded-sm" />
-               <span className="h-4 w-4 bg-slate-200 rounded-sm" />
-            </div>
-          </div>
         </div>
       </div>
     </footer>
@@ -92,9 +95,15 @@ function FooterLink({ label, to }) {
   );
 }
 
-function SocialLink({ icon }) {
+function SocialLink({ icon, href, label }) {
   return (
-    <a href="#" className="h-9 w-9 flex items-center justify-center rounded-xl bg-slate-50 text-slate-400 hover:bg-primary hover:text-white transition-all duration-300 shadow-sm">
+    <a
+      href={href}
+      aria-label={label}
+      target={href?.startsWith("http") ? "_blank" : undefined}
+      rel={href?.startsWith("http") ? "noreferrer" : undefined}
+      className="h-9 w-9 flex items-center justify-center rounded-xl bg-slate-50 text-slate-400 hover:bg-primary hover:text-white transition-all duration-300 shadow-sm"
+    >
       {icon}
     </a>
   );

@@ -1,14 +1,26 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import MainLayout from "../components/layout/MainLayout";
 import axios from "../api/axios";
 import Loader from "../components/common/Loader";
-import { User, Trophy, BarChart3, Clock, ChevronRight } from "lucide-react";
+import Button from "../components/common/Button";
+import { updateAvatarAPI } from "../api/authApi";
+import { setUser } from "../features/auth/authSlice";
+import { avatarPresets } from "../data/avatarPresets";
+import { toast } from "react-hot-toast";
+import { User, Trophy, BarChart3, Clock, ChevronRight, Camera } from "lucide-react";
 
 export default function ProfilePage() {
   const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [avatarOpen, setAvatarOpen] = useState(false);
+  const [savingAvatar, setSavingAvatar] = useState(false);
+
+  const currentAvatar = useMemo(() => user?.avatar || "", [user?.avatar]);
 
   useEffect(() => {
     const fetchHistory = async () => {
@@ -17,13 +29,31 @@ export default function ProfilePage() {
         setHistory(data);
       } catch (error) {
         console.error("Error fetching history:", error);
+        if (error?.response?.status === 401) {
+          toast.error("Session expired. Please login again.");
+          navigate("/login");
+        }
       } finally {
         setLoading(false);
       }
     };
 
     fetchHistory();
-  }, []);
+  }, [navigate]);
+
+  const handlePickAvatar = async (avatarUrl) => {
+    try {
+      setSavingAvatar(true);
+      const updated = await updateAvatarAPI(avatarUrl);
+      dispatch(setUser({ ...(user || {}), ...updated, token: user?.token }));
+      toast.success("Avatar updated!");
+      setAvatarOpen(false);
+    } catch (e) {
+      toast.error(e.response?.data?.message || "Failed to update avatar");
+    } finally {
+      setSavingAvatar(false);
+    }
+  };
 
   if (loading) return <Loader />;
 
@@ -47,6 +77,14 @@ export default function ProfilePage() {
                     </div>
                   )}
                 </div>
+                <button
+                  type="button"
+                  onClick={() => setAvatarOpen(true)}
+                  className="absolute -bottom-2 -right-2 h-10 w-10 rounded-full bg-slate-900 text-white shadow-xl flex items-center justify-center hover:bg-slate-800"
+                  title="Change avatar"
+                >
+                  <Camera size={18} />
+                </button>
               </div>
 
               <div className="text-center md:text-left">
@@ -66,6 +104,64 @@ export default function ProfilePage() {
               </div>
             </div>
           </div>
+
+          {/* Avatar modal */}
+          {avatarOpen && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+              <div
+                className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
+                onClick={() => !savingAvatar && setAvatarOpen(false)}
+              />
+              <div className="relative w-full max-w-2xl glass-card p-8 md:p-10 shadow-2xl">
+                <div className="flex items-center justify-between gap-6">
+                  <div>
+                    <h3 className="font-display text-2xl font-black text-slate-900">
+                      Choose your avatar
+                    </h3>
+                    <p className="mt-2 text-slate-500">
+                      Pick a cartoon avatar. It will show on your profile and leaderboard.
+                    </p>
+                  </div>
+                  <Button
+                    variant="neutral"
+                    onClick={() => !savingAvatar && setAvatarOpen(false)}
+                  >
+                    Close
+                  </Button>
+                </div>
+
+                <div className="mt-8 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
+                  {avatarPresets.map((src) => {
+                    const active = currentAvatar === src;
+                    return (
+                      <button
+                        key={src}
+                        type="button"
+                        disabled={savingAvatar}
+                        onClick={() => handlePickAvatar(src)}
+                        className={`group rounded-2xl border p-2 transition ${
+                          active
+                            ? "border-primary bg-primary/5"
+                            : "border-slate-100 bg-white hover:border-slate-200"
+                        }`}
+                        title="Select avatar"
+                      >
+                        <img
+                          src={src}
+                          alt="Avatar"
+                          className="h-16 w-16 mx-auto rounded-xl object-cover"
+                        />
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <p className="mt-6 text-xs text-slate-400">
+                  Add your images into `client/public/avatars/` as `avatar-1.png`…`avatar-6.png`.
+                </p>
+              </div>
+            </div>
+          )}
 
           {/* Quiz History Section */}
           <div className="space-y-8">
@@ -115,7 +211,12 @@ export default function ProfilePage() {
                   </div>
                   <h3 className="text-xl font-bold text-slate-900 mb-2">No History Yet</h3>
                   <p className="text-slate-500 max-w-xs mx-auto mb-8">You haven't completed any quizzes yet. Start your first session now!</p>
-                  <button className="premium-button bg-primary px-8 py-4 text-white">Start New Quiz</button>
+                  <button
+                    onClick={() => navigate("/quiz/setup")}
+                    className="premium-button bg-primary px-8 py-4 text-white"
+                  >
+                    Start New Quiz
+                  </button>
                 </div>
               )}
             </div>

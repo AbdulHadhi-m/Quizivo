@@ -1,7 +1,32 @@
-import { dummyCategories } from "../../data/dummyCategories";
+import { useEffect, useState } from "react";
+import axios from "../../api/axios";
 import CategoryCard from "../category/CategoryCard";
+import Loader from "../common/Loader";
 
 export default function FeaturedCategories() {
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+
+    (async () => {
+      try {
+        const { data } = await axios.get("/categories");
+        if (!mounted) return;
+        setCategories(data.slice(0, 6));
+      } catch (e) {
+        console.error("Failed to load categories", e);
+      } finally {
+        if (mounted) setLoading(false);
+      }
+    })();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
   return (
     <section className="py-10 md:py-16">
       <div className="container-app">
@@ -11,9 +36,13 @@ export default function FeaturedCategories() {
         </p>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {dummyCategories.map((category) => (
-            <CategoryCard key={category.id} category={category} />
-          ))}
+          {loading ? (
+            <Loader />
+          ) : (
+            categories.map((category) => (
+              <CategoryCard key={category._id} category={category} />
+            ))
+          )}
         </div>
       </div>
     </section>

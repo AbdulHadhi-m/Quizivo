@@ -26,6 +26,11 @@ const categorySchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    emoji: {
+      type: String,
+      default: "",
+      trim: true,
+    },
   },
   {
     timestamps: true,

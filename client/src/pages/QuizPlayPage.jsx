@@ -22,6 +22,7 @@ export default function QuizPlayPage() {
         difficulty: "easy",
         type: "multiple",
         time: 60,
+        practice: false,
       }
     );
   }, [state]);
@@ -66,6 +67,8 @@ export default function QuizPlayPage() {
   useEffect(() => {
     if (!questions.length) return;
 
+    if (quizSettings.practice) return;
+
     if (timeLeft <= 0) {
       handleSubmitQuiz();
       return;
@@ -76,7 +79,7 @@ export default function QuizPlayPage() {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [timeLeft, questions.length, handleSubmitQuiz]);
+  }, [timeLeft, questions.length, handleSubmitQuiz, quizSettings.practice]);
 
   const currentQuestion = questions[currentIndex];
 
@@ -140,6 +143,7 @@ export default function QuizPlayPage() {
               category={quizSettings.category}
               difficulty={quizSettings.difficulty}
               type={quizSettings.type}
+              practice={!!quizSettings.practice}
             />
 
             <QuizProgress

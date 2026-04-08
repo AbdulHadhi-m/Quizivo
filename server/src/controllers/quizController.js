@@ -5,6 +5,8 @@ import Category from "../models/Category.js";
 export const submitQuizAttempt = async (req, res) => {
   const {
     category,
+    categoryName,
+    categorySlug,
     difficulty,
     type,
     totalQuestions,
@@ -16,7 +18,15 @@ export const submitQuizAttempt = async (req, res) => {
     timeTaken,
   } = req.body;
 
-  const foundCategory = await Category.findById(category);
+  let foundCategory = null;
+
+  if (category) {
+    foundCategory = await Category.findById(category);
+  } else if (categorySlug) {
+    foundCategory = await Category.findOne({ slug: categorySlug });
+  } else if (categoryName) {
+    foundCategory = await Category.findOne({ name: categoryName });
+  }
 
   if (!foundCategory) {
     res.status(404);
@@ -25,7 +35,7 @@ export const submitQuizAttempt = async (req, res) => {
 
   const attempt = await QuizAttempt.create({
     user: req.user._id,
-    category,
+    category: foundCategory._id,
     difficulty,
     type,
     totalQuestions,

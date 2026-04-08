@@ -23,6 +23,10 @@ export const registerUser = async (req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
+      avatar: user.avatar,
+      totalScore: user.totalScore,
+      quizzesPlayed: user.quizzesPlayed,
+      createdAt: user.createdAt,
       token: generateToken(user._id),
     });
   } else {
@@ -42,8 +46,10 @@ export const loginUser = async (req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
+      avatar: user.avatar,
       totalScore: user.totalScore,
       quizzesPlayed: user.quizzesPlayed,
+      createdAt: user.createdAt,
       token: generateToken(user._id),
     });
   } else {

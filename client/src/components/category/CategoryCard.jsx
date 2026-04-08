@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, CircleHelp, Layers } from "lucide-react";
+import { ArrowRight, Layers } from "lucide-react";
 import { motion } from "framer-motion";
 
 const MotionDiv = motion.div;
 
 export default function CategoryCard({ category }) {
+  const emoji = category.emoji || "🧠";
+  const totalQuestions =
+    typeof category.totalQuestions === "number" ? category.totalQuestions : null;
+
   return (
     <MotionDiv 
       whileHover={{ y: -8 }}
@@ -25,7 +29,7 @@ export default function CategoryCard({ category }) {
 
         <div className="relative z-10 flex items-start justify-between">
           <div className="text-6xl filter drop-shadow-md transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
-            {category.emoji}
+            {emoji}
           </div>
           <div className="rounded-full bg-white/20 p-2.5 backdrop-blur-md">
             <Layers size={20} />
@@ -46,12 +50,12 @@ export default function CategoryCard({ category }) {
           <div className="flex flex-col">
             <span className="text-[10px] uppercase tracking-wider font-bold text-slate-400">Total Questions</span>
             <span className="text-xl font-display font-black text-slate-900 leading-none">
-              {category.totalQuestions || "50"}+
+              {totalQuestions ?? 0}+
             </span>
           </div>
 
           <Link
-            to="/quiz/setup"
+            to={`/category/${category.slug}`}
             className="premium-button flex h-12 items-center gap-2 bg-slate-900 px-6 text-sm text-white group-hover:bg-primary"
           >
             Play Now
