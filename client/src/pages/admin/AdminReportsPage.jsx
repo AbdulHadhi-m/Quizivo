@@ -113,7 +113,7 @@ export default function AdminReportsPage() {
               </div>
               <div className="p-4 bg-gray-900/50 rounded-xl border border-gray-700/50">
                  <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">Active Quizzes</p>
-                 <p className="text-2xl font-bold text-purple-400">{data?.stats?.questions || 0}</p>
+                 <p className="text-2xl font-bold text-orange-500">{data?.stats?.questions || 0}</p>
               </div>
               <div className="p-4 bg-gray-900/50 rounded-xl border border-gray-700/50">
                  <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">Total Players</p>

@@ -128,7 +128,11 @@ export default function CategoryDetailsPage() {
                 <button
                   onClick={() =>
                     navigate("/quiz/setup", {
-                      state: { category: category.name },
+                      state: {
+                        category: category.name,
+                        categorySlug: category.slug,
+                        categoryId: category._id,
+                      },
                     })
                   }
                   className="premium-button flex items-center gap-3 bg-primary px-10 py-5 text-white shadow-xl hover:scale-105 transition-all"

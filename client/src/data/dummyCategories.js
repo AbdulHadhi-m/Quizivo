@@ -22,7 +22,7 @@ export const dummyCategories = [
     name: "Technology",
     slug: "technology",
     description: "Programming, computers, gadgets and innovation.",
-    color: "from-violet-500 to-fuchsia-400",
+    color: "from-orange-500 to-orange-400",
     emoji: "💻",
     totalQuestions: 140,
   },

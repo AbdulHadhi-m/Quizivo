@@ -42,12 +42,12 @@ export default function RegisterPage() {
       <section className="relative overflow-hidden bg-mesh py-8">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute left-6 top-24 h-48 w-48 rounded-full bg-orange-200/30 blur-3xl" />
-          <div className="absolute right-6 top-10 h-56 w-56 rounded-full bg-violet-200/30 blur-3xl" />
+          <div className="absolute right-6 top-10 h-56 w-56 rounded-full bg-orange-500/20 blur-3xl" />
         </div>
 
         <div className="container-app relative flex min-h-[calc(100vh-120px)] items-center justify-center py-10">
           <div className="w-full max-w-md rounded-3xl border border-white/70 bg-white/85 p-8 shadow-[0_24px_80px_rgba(15,23,42,0.12)] backdrop-blur-xl md:p-10">
-            <div className="inline-flex items-center gap-2 rounded-full bg-violet-50 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-violet-600">
+            <div className="inline-flex items-center gap-2 rounded-full bg-orange-50 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-orange-500">
               <Sparkles size={14} />
               Start Journey
             </div>

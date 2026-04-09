@@ -41,7 +41,7 @@ export default function LoginPage() {
     <MainLayout showFooter={false}>
       <section className="relative overflow-hidden bg-mesh py-8">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -left-10 top-28 h-44 w-44 rounded-full bg-violet-200/30 blur-3xl" />
+          <div className="absolute -left-10 top-28 h-44 w-44 rounded-full bg-orange-500/20 blur-3xl" />
           <div className="absolute right-2 top-16 h-52 w-52 rounded-full bg-orange-200/30 blur-3xl" />
         </div>
 

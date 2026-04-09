@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useMemo, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import MainLayout from "../components/layout/MainLayout";
 import { dummyCategories } from "../data/dummyCategories";
 import { motion } from "framer-motion";
@@ -14,9 +14,21 @@ const timerOptions = [30, 60, 90, 120];
 
 export default function QuizSetupPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const initialCategory = useMemo(() => {
+    const incoming = location.state?.category;
+    if (typeof incoming !== "string") return "General Knowledge";
+
+    const matched = dummyCategories.find(
+      (item) => item.name.toLowerCase() === incoming.toLowerCase()
+    );
+
+    return matched?.name || incoming;
+  }, [location.state]);
 
   const [formData, setFormData] = useState({
-    category: "General Knowledge",
+    category: initialCategory,
     amount: 10,
     difficulty: "easy",
     type: "multiple",

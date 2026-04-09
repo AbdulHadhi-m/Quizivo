@@ -23,6 +23,19 @@ const ranges = [
 const getCartoonAvatar = (name = "Player") =>
   `https://api.dicebear.com/9.x/adventurer/svg?seed=${encodeURIComponent(name)}`;
 
+const getUserPoints = (user) => {
+  const raw =
+    user?.score ??
+    user?.points ??
+    user?.totalScore ??
+    user?.todayScore ??
+    user?.todayPoints ??
+    0;
+
+  const parsed = Number(raw);
+  return Number.isFinite(parsed) ? parsed : 0;
+};
+
 function Avatar({ name, avatarUrl, size = "h-16 w-16", winner = false }) {
   const src = avatarUrl || getCartoonAvatar(name);
 
@@ -61,7 +74,7 @@ function PodiumCard({ place, user, height, winner = false }) {
 
       <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-xs font-extrabold text-orange-600 shadow-sm">
         <Coins size={14} />
-        {user?.score ?? 0}
+        {getUserPoints(user)} pts
       </div>
 
       <div
@@ -101,7 +114,7 @@ function RankingRow({ user, index }) {
 
       <div className="inline-flex items-center gap-1.5 rounded-full bg-orange-50 px-3 py-1.5 text-xs font-extrabold text-orange-600">
         <Coins size={14} />
-        {user?.score ?? 0}
+        {getUserPoints(user)} pts
       </div>
     </div>
   );
@@ -123,7 +136,7 @@ export default function LeaderboardPage() {
 
   return (
     <MainLayout>
-      <section className="relative min-h-screen overflow-hidden bg-[#f8f5ee] px-4 pb-14 pt-24 md:px-6 lg:px-8">
+      <section className="relative min-h-screen overflow-hidden bg-[#f8f5ee] px-4 pb-14 pt-32 md:px-6 md:pt-36 lg:px-8">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute -left-16 top-24 h-60 w-60 rounded-full bg-orange-200/30 blur-3xl" />
           <div className="absolute right-0 top-8 h-72 w-72 rounded-full bg-yellow-200/25 blur-3xl" />
@@ -248,7 +261,7 @@ export default function LeaderboardPage() {
               </p>
               <div className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-orange-50 px-3 py-1.5 text-xs font-extrabold text-orange-600">
                 <Coins size={14} />
-                {top3[0]?.score ?? 0} points
+                {getUserPoints(top3[0])} points
               </div>
             </div>
 
@@ -266,7 +279,7 @@ export default function LeaderboardPage() {
                 Top Score
               </p>
               <p className="mt-2 text-2xl font-black text-slate-900">
-                {top3[0]?.score ?? 0}
+                {getUserPoints(top3[0])}
               </p>
             </div>
           </div>

@@ -16,7 +16,7 @@
     ];
 
     export default function Navbar() {
-      const { isAuthenticated } = useSelector((state) => state.auth);
+      const { isAuthenticated, user } = useSelector((state) => state.auth);
       const dispatch = useDispatch();
       const navigate = useNavigate();
       const [mobileOpen, setMobileOpen] = useState(false);
@@ -100,10 +100,18 @@
                   {isAuthenticated && (
                     <Link
                       to="/profile"
-                      className="flex h-11 w-11 items-center justify-center rounded-xl bg-white border border-slate-100 text-slate-600 shadow-sm transition hover:scale-105 hover:text-primary"
+                      className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-xl bg-white border border-slate-100 text-slate-600 shadow-sm transition hover:scale-105 hover:text-primary"
                       title="Profile"
                     >
-                      <UserCircle2 size={20} />
+                      {user?.avatar ? (
+                        <img
+                          src={user.avatar}
+                          alt={user?.name || "Profile"}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        <UserCircle2 size={20} />
+                      )}
                     </Link>
                   )}
                 </div>

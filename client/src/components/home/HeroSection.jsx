@@ -49,7 +49,7 @@ export default function HeroSection() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="relative z-10"
+            className="relative z-10 order-2 lg:order-1"
           >
             <MotionDiv
               variants={itemVariants}
@@ -133,7 +133,7 @@ export default function HeroSection() {
       ease: "easeInOut",
     },
   }}
-  className="relative flex w-full items-center justify-center overflow-visible lg:justify-end"
+  className="relative flex w-full order-1 items-center justify-center overflow-visible lg:order-2 lg:justify-end"
 >
   <img
     src="/images/quizivo-mascot.png"

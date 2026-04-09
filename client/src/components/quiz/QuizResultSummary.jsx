@@ -26,7 +26,7 @@ export default function QuizResultSummary({
           recycle={false}
           numberOfPieces={500}
           gravity={0.1}
-          colors={['#10b981', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6']}
+          colors={["#10b981", "#3b82f6", "#f59e0b", "#ef4444", "#f97316"]}
         />
       )}
 
