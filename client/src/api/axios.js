@@ -1,10 +1,9 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "https://quizivo-server.onrender.com/api",
+  baseURL: `${import.meta.env.VITE_API_URL}/api`,
   withCredentials: true,
 });
-
 axiosInstance.interceptors.request.use((config) => {
   const storedUser = localStorage.getItem("quizivo_user");
   const user = storedUser ? JSON.parse(storedUser) : null;
