@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { PlayCircle, Sparkles, Trophy, Brain, ArrowRight, Zap } from "lucide-react";
+import {
+  Play,
+  Trophy,
+  Brain,
+  Star,
+  ChevronRight,
+  Medal,
+  Sparkles,
+} from "lucide-react";
 
 const MotionDiv = motion.div;
 const MotionH1 = motion.h1;
@@ -12,139 +20,127 @@ export default function HeroSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
+        staggerChildren: 0.12,
+        delayChildren: 0.15,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+    hidden: { opacity: 0, y: 24 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: "easeOut" },
+    },
   };
 
   return (
-    <section className="relative min-h-[90vh] overflow-hidden flex items-center pt-32 md:pt-36 pb-16">
-      {/* Background Orbs */}
-      <div className="absolute top-1/4 -left-20 w-80 h-80 bg-primary/20 rounded-full blur-[100px] animate-pulse" />
-      <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-secondary/20 rounded-full blur-[100px] animate-pulse" />
+    <section className="relative overflow-hidden  pt-24 pb-16 md:pt-28 lg:pt-32"> {/*bg-[#fffaf3]}
+      {/* Decorative shapes */}
+      <div className="absolute -top-10 -left-10 h-40 w-40 rounded-full bg-[#ffd166]/40 blur-2xl" />
+      <div className="absolute top-20 right-0 h-52 w-52 rounded-full bg-[#ff7a1a]/20 blur-3xl" />
+      <div className="absolute bottom-0 left-1/3 h-44 w-44 rounded-full  blur-3xl" /> 
 
-      <div className="container-app relative">
-        <div className="grid items-center gap-16 lg:grid-cols-2">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid items-center gap-12 lg:grid-cols-2">
+          {/* Left Content */}
           <MotionDiv
             variants={containerVariants}
             initial="hidden"
             animate="visible"
+            className="relative z-10"
           >
-            <MotionDiv 
+            <MotionDiv
               variants={itemVariants}
-              className="mb-8 inline-flex items-center gap-3 rounded-full border border-primary/20 bg-primary/5 px-5 py-2.5 text-sm font-bold text-primary"
+              className="mb-6 inline-flex items-center gap-2 rounded-full border-2 border-[#ffb703] bg-white px-4 py-2 text-sm font-semibold text-[#ff7a1a] shadow-sm"
             >
-              <span className="flex h-5 w-5 animate-bounce items-center justify-center rounded-full bg-primary text-[10px] text-white">
-                <Zap size={10} fill="currentColor" />
-              </span>
-              Level Up Your Knowledge
+              <Sparkles className="h-4 w-4" />
+              Learn, Play, and Win
             </MotionDiv>
 
-            <MotionH1 
+            <MotionH1
               variants={itemVariants}
-              className="section-title mb-6 leading-[1.1]"
+              className="max-w-xl text-4xl font-black leading-tight text-[#111827] sm:text-5xl lg:text-6xl"
             >
-              Master Any Topic <br />
-              <span className="text-gradient">Through Play</span>
+              Pick a Topic,
+              <br />
+              <span className="text-[#ff7a1a]">Play Quiz, Win Big!</span>
             </MotionH1>
 
-            <MotionP 
+            <MotionP
               variants={itemVariants}
-              className="section-subtitle mb-10"
+              className="mt-5 max-w-lg text-base leading-7 text-[#6b7280] sm:text-lg"
             >
-              The ultimate quiz destination for curious minds. 
-              Explore thousands of questions, compete with friends, and 
-              earn exclusive badges along the way.
+              Practice with fun quizzes, challenge your friends, climb the
+              leaderboard, and improve your knowledge every day with a colorful
+              and exciting experience.
             </MotionP>
 
-            <MotionDiv 
+            <MotionDiv
               variants={itemVariants}
-              className="flex flex-wrap gap-5"
+              className="mt-8 flex flex-col gap-4 sm:flex-row"
             >
               <Link
                 to="/quiz/setup"
-                className="premium-button flex items-center gap-3 bg-primary px-8 py-5 text-white hover:bg-primary-dark"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#ff7a1a] px-7 py-4 text-sm font-bold text-white shadow-md transition hover:scale-[1.02]"
               >
-                <PlayCircle size={22} />
-                Start Playing Now
+                <Play className="h-5 w-5 fill-white" />
+                Start Quiz
               </Link>
 
               <Link
-                to="/categories"
-                className="premium-button flex items-center gap-3 border border-slate-200 bg-white px-8 py-5 text-slate-800 hover:bg-slate-50"
+                to="/leaderboard"
+                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#111827] bg-white px-7 py-4 text-sm font-bold text-[#111827] transition hover:bg-[#fff1df]"
               >
-                <Brain size={22} className="text-primary" />
-                Browse Categories
+                <Trophy className="h-5 w-5" />
+                View Ranking
               </Link>
             </MotionDiv>
 
-            <MotionDiv 
+            {/* Stats */}
+            <MotionDiv
               variants={itemVariants}
-              className="mt-16 grid grid-cols-3 gap-8 border-t border-slate-200 pt-8"
+              className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3"
             >
-              <div>
-                <p className="font-display text-4xl font-black text-slate-900">24/7</p>
-                <p className="mt-1 text-sm font-medium text-slate-500">Live Quizzes</p>
+              <div className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5">
+                <p className="text-2xl font-black text-[#111827]">15+</p>
+                <p className="mt-1 text-sm text-[#6b7280]">Quiz Categories</p>
               </div>
-              <div>
-                <p className="font-display text-4xl font-black text-slate-900">10k+</p>
-                <p className="mt-1 text-sm font-medium text-slate-500">Active Users</p>
+
+              <div className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5">
+                <p className="text-2xl font-black text-[#111827]">10K+</p>
+                <p className="mt-1 text-sm text-[#6b7280]">Active Players</p>
               </div>
-              <div>
-                <p className="font-display text-4xl font-black text-slate-900">15</p>
-                <p className="mt-1 text-sm font-medium text-slate-500">Categories</p>
+
+              <div className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5 col-span-2 sm:col-span-1">
+                <p className="text-2xl font-black text-[#111827]">24/7</p>
+                <p className="mt-1 text-sm text-[#6b7280]">Live Challenges</p>
               </div>
             </MotionDiv>
           </MotionDiv>
 
-          <MotionDiv
-            initial={{ opacity: 0, scale: 0.9, rotateY: 20 }}
-            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-            className="perspective-1000 hidden lg:block"
-          >
-            <div className="glass-card relative aspect-square w-full overflow-hidden p-1 bg-gradient-to-br from-white/80 to-white/40">
-              <div className="absolute inset-0 bg-mesh opacity-30" />
-              
-              <div className="relative flex h-full w-full flex-col items-center justify-center rounded-[calc(var(--radius-xl)-2px)] bg-white/40 p-12 text-center backdrop-blur-sm">
-                <div className="relative mb-10 h-64 w-64 rounded-3xl bg-gradient-to-tr from-primary to-accent p-0.5 shadow-2xl rotate-3">
-                  <div className="flex h-full w-full items-center justify-center rounded-[calc(var(--radius-3xl)-2px)] bg-slate-900 text-[100px]">
-                    <Brain className="h-40 w-40 text-white animate-pulse" />
-                  </div>
-                  
-                  {/* Floating Badges */}
-                  <MotionDiv 
-                    animate={{ y: [0, -10, 0] }}
-                    transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
-                    className="absolute -right-8 -top-8 rounded-2xl bg-white p-4 shadow-xl"
-                  >
-                    <Trophy className="h-10 w-10 text-secondary" />
-                  </MotionDiv>
-                  
-                  <MotionDiv 
-                    animate={{ y: [0, 10, 0] }}
-                    transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 0.5 }}
-                    className="absolute -left-10 bottom-10 rounded-2xl bg-white p-4 shadow-xl"
-                  >
-                    <Sparkles className="h-10 w-10 text-primary" />
-                  </MotionDiv>
-                </div>
-
-                <h3 className="font-display text-3xl font-black text-slate-900">Weekly Challenge</h3>
-                <p className="mt-4 text-slate-600">Join the General Knowledge Grand Prix and win exclusive avatar frames.</p>
-                
-                <button className="mt-8 flex items-center gap-2 font-display font-bold text-primary group">
-                  Join Challenge <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </button>
-              </div>
-            </div>
-          </MotionDiv>
+          {/* Right Visual */}
+         <MotionDiv
+  initial={{ opacity: 0, x: 40, scale: 0.9 }}
+  animate={{ y: [0, -12, 0], opacity: 1, x: 0, scale: 1 }}
+  transition={{
+    duration: 0.8,
+    ease: "easeOut",
+    y: {
+      repeat: Infinity,
+      duration: 4,
+      ease: "easeInOut",
+    },
+  }}
+  className="relative flex w-full items-center justify-center overflow-visible lg:justify-end"
+>
+  <img
+    src="/images/quizivo-mascot.png"
+    alt="Quizivo mascot"
+    className="block w-full max-w-[900px] scale-[1.45] object-contain drop-shadow-2xl lg:max-w-[1100px]"
+  />
+</MotionDiv>
         </div>
       </div>
     </section>

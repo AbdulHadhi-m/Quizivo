@@ -109,8 +109,8 @@ export default function QuizPlayPage() {
   if (!questions.length) {
     return (
       <MainLayout>
-        <section className="py-16">
-          <div className="container-app">
+        <section className="py-16 ">
+          <div className="container-app ">
             <div className="quiz-card p-8 text-center">
               <h1 className="text-3xl font-black text-slate-900">
                 No questions found

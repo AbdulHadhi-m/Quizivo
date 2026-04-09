@@ -33,8 +33,8 @@ export default function QuizSetupPage() {
 
   return (
     <MainLayout>
-      <section className="py-24 md:py-32">
-        <div className="container-app">
+      <section className="py-24 md:py-32 bg-[#fffaf3]">
+        <div className="container-app ">
           <MotionDiv 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

@@ -28,8 +28,8 @@ export default function FeaturedCategories() {
   }, []);
 
   return (
-    <section className="py-10 md:py-16">
-      <div className="container-app">
+    <section className="py-10 md:py-16 ">
+      <div className="container-app " >
         <h2 className="section-title">Choose your favorite category</h2>
         <p className="section-subtitle">
           Quizivo offers colorful and engaging categories for every learner.

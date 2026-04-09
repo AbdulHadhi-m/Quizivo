@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   settings: {
     category: "General Knowledge",
+    categoryId: "",
+    categorySlug: "",
     amount: 10,
     difficulty: "easy",
     type: "multiple",

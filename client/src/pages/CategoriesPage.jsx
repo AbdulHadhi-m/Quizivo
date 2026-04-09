@@ -30,7 +30,7 @@ export default function CategoriesPage() {
 
   return (
     <MainLayout>
-      <section className="pt-32 pb-14 md:pt-36 md:pb-18">
+      <section className="pt-32 pb-14 md:pt-36 md:pb-18 bg-[#fffaf3]">
         <div className="container-app">
           <h1 className="section-title">All Quiz Categories</h1>
           <p className="section-subtitle">

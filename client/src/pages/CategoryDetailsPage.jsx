@@ -47,7 +47,7 @@ export default function CategoryDetailsPage() {
   return (
     <MainLayout>
       <section className="py-20 md:py-32">
-        <div className="container-app">
+        <div className="container-app  ">
           <button
             onClick={() => navigate("/categories")}
             className="flex items-center gap-2 text-slate-500 hover:text-primary transition-colors mb-10 group"

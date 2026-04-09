@@ -12,7 +12,7 @@ export default function CategoryCard({ category }) {
   return (
     <MotionDiv 
       whileHover={{ y: -8 }}
-      className="glass-card flex flex-col overflow-hidden p-2 group"
+      className="glass-card flex flex-col overflow-hidden p-2 group "
     >
       <div
         className={`relative h-48 w-full overflow-hidden rounded-xl bg-gradient-to-br ${category.color} p-8 text-white transition-all duration-500 group-hover:shadow-xl`}

@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 const MotionMain = motion.main;
 
-export default function MainLayout({ children }) {
+export default function MainLayout({ children, showFooter = true }) {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function MainLayout({ children }) {
           {children}
         </MotionMain>
       </AnimatePresence>
-      <Footer />
+      {showFooter ? <Footer /> : null}
     </div>
   );
 }

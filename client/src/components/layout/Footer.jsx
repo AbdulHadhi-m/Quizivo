@@ -8,9 +8,13 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="col-span-1 md:col-span-2 lg:col-span-1">
             <Link to="/" className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white shadow-lg">
-                <Sparkles size={20} />
-              </div>
+              <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-primary-dark shadow-lg transition-transform group-hover:rotate-12">
+  <img
+    src="/favicon.png"
+    alt="logo"
+    className="h-full w-full object-cover"
+  />
+</div>
               <h3 className="font-display text-2xl font-black text-slate-900 leading-none">Quizivo</h3>
             </Link>
             <p className="mt-6 text-sm leading-relaxed text-slate-500 max-w-xs">
@@ -67,7 +71,7 @@ export default function Footer() {
                     placeholder="Email address" 
                     className="bg-white/10 border border-white/10 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-primary/50 transition-colors" 
                   />
-                  <button className="bg-primary text-white rounded-xl py-2.5 text-xs font-bold hover:bg-primary-dark transition-colors">
+                  <button className="bg-orange-500 text-white rounded-xl py-2.5 text-xs font-bold hover:bg-primary-dark transition-colors">
                     Subscribe
                   </button>
                 </div>
