@@ -7,6 +7,7 @@ import questionRoutes from "./src/routes/questionRoutes.js";
 import quizRoutes from "./src/routes/quizRoutes.js";
 import leaderboardRoutes from "./src/routes/leaderboardRoutes.js";
 import userRoutes from "./src/routes/userRoutes.js";
+import aiQuizRoutes from "./src/routes/aiQuizRoutes.js";
 import notFound from "./src/middleware/notFoundMiddleware.js";
 import { errorHandler } from "./src/middleware/errorMiddleware.js";
 
@@ -31,6 +32,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/questions", questionRoutes);
 app.use("/api/quiz", quizRoutes);
+app.use("/api/ai-quiz", aiQuizRoutes);
 app.use("/api/leaderboard", leaderboardRoutes);
 app.use("/api/users", userRoutes);
 

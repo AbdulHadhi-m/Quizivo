@@ -7,6 +7,7 @@ const MotionDiv = motion.div;
 export default function QuizHeader({
   currentIndex,
   totalQuestions,
+  answeredCount = 0,
   timeLeft,
   category,
   difficulty,
@@ -83,7 +84,7 @@ export default function QuizHeader({
             <div className="flex flex-col">
               <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Progress</span>
               <span className="font-display text-2xl font-black text-slate-900">
-                {Math.round(((currentIndex + 1) / totalQuestions) * 100)}%
+                {totalQuestions ? Math.round((answeredCount / totalQuestions) * 100) : 0}%
               </span>
             </div>
           </div>

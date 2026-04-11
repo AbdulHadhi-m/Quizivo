@@ -4,7 +4,7 @@ const MotionDiv = motion.div;
 
 export default function QuizProgress({ currentIndex, totalQuestions, answeredCount }) {
   const progressPercentage = totalQuestions
-    ? ((currentIndex + 1) / totalQuestions) * 100
+    ? (answeredCount / totalQuestions) * 100
     : 0;
   
   const answeredPercentage = totalQuestions
@@ -37,7 +37,7 @@ export default function QuizProgress({ currentIndex, totalQuestions, answeredCou
           className="absolute top-0 left-0 h-full bg-primary/20"
         />
         
-        {/* Current position (foreground layer) */}
+        {/* Answered progress (foreground layer) */}
         <MotionDiv
           initial={{ width: 0 }}
           animate={{ width: `${progressPercentage}%` }}
@@ -55,7 +55,7 @@ export default function QuizProgress({ currentIndex, totalQuestions, answeredCou
           <div 
             key={i} 
             className={`h-1 w-1 rounded-full transition-colors duration-500 ${
-              i <= currentIndex ? 'bg-primary' : 'bg-slate-200'
+              i < answeredCount ? 'bg-primary' : 'bg-slate-200'
             }`} 
           />
         ))}

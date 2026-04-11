@@ -6,8 +6,6 @@ import QuizProgress from "../components/quiz/QuizProgress";
 import QuestionPalette from "../components/quiz/QuestionPalette";
 import QuizQuestionCard from "../components/quiz/QuizQuestionCard";
 import QuizNavigation from "../components/quiz/QuizNavigation";
-import questionsData from "../data/questions.json";
-import { shuffleArray } from "../utils/shuffleArray";
 import { calculateScore } from "../utils/calculateScore";
 
 export default function QuizPlayPage() {
@@ -32,25 +30,20 @@ export default function QuizPlayPage() {
   const [timeLeft, setTimeLeft] = useState(quizSettings.time);
 
   const questions = useMemo(() => {
-    const exactMatch = questionsData.filter(
-      (item) =>
-        item.category === quizSettings.category &&
-        item.difficulty === quizSettings.difficulty &&
-        item.type === quizSettings.type
-    );
+    const incomingQuestions = Array.isArray(quizSettings?.questions)
+      ? quizSettings.questions
+      : [];
 
-    let selectedQuestions = exactMatch;
-
-    if (selectedQuestions.length < quizSettings.amount) {
-      const fallback = questionsData.filter(
-        (item) =>
-          item.category === quizSettings.category && item.type === quizSettings.type
-      );
-
-      selectedQuestions = fallback;
-    }
-
-    return shuffleArray(selectedQuestions).slice(0, quizSettings.amount);
+    return incomingQuestions.map((item, index) => ({
+      id: item?.id || `ai-q-${index + 1}`,
+      question: item?.question || "",
+      options: Array.isArray(item?.options) ? item.options : [],
+      answer: item?.correctAnswer || item?.answer || "",
+      explanation: item?.explanation || "",
+      category: item?.category || quizSettings.category,
+      difficulty: item?.difficulty || quizSettings.difficulty,
+      type: item?.type || quizSettings.type,
+    }));
   }, [quizSettings]);
 
   const handleSubmitQuiz = useCallback(() => {
@@ -116,7 +109,7 @@ export default function QuizPlayPage() {
                 No questions found
               </h1>
               <p className="mt-3 text-slate-600">
-                Try another category, difficulty, or question type.
+                Please generate a new AI quiz from setup.
               </p>
               <Link
                 to="/quiz/setup"
@@ -139,6 +132,7 @@ export default function QuizPlayPage() {
             <QuizHeader
               currentIndex={currentIndex}
               totalQuestions={questions.length}
+              answeredCount={answeredCount}
               timeLeft={timeLeft}
               category={quizSettings.category}
               difficulty={quizSettings.difficulty}
